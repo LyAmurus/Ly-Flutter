@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 75, 71, 82)),
         useMaterial3: true,
       ),
-      home: const ShoppingHomePage(title: 'Ly - Online Shopping'),
+      home: const ShoppingHomePage(title: 'Ly Study'),
     );
   }
 }
