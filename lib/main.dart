@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ly - Online Shopping',
+      title: 'Ly Study',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 75, 71, 82)),
         useMaterial3: true,
@@ -50,7 +50,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Welcome to Ly - Online Shopping!',
+              'Welcome to Ly Study :D',
             ),
             const SizedBox(height: 20),
             Text(
