@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class ShoppingHomePage extends StatefulWidget {
-  const ShoppingHomePage({super.key, required this.title});
+  const ShoppingHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -31,6 +31,7 @@ class ShoppingHomePage extends StatefulWidget {
 
 class _ShoppingHomePageState extends State<ShoppingHomePage> {
   int _itemsInCart = 0;
+  int _currentIndex = 0; // Index for bottom navigation bar
 
   void _addItemToCart() {
     setState(() {
@@ -42,27 +43,40 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.transparent, // Set to transparent
+        elevation: 0, // Remove elevation
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Welcome to Ly Study :D',
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Items in Cart: $_itemsInCart',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _addItemToCart,
-              child: const Text('Add Item to Cart'),
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              const Color.fromARGB(255, 92, 190, 188),
+              Colors.purple[400]!,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Welcome to Ly Study :D',
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Items in Cart: $_itemsInCart',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white), // Set text color to white
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _addItemToCart,
+                child: const Text('Add Item to Cart'),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -87,6 +101,30 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
         },
         tooltip: 'Open Cart',
         child: const Icon(Icons.shopping_cart),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        backgroundColor: const Color.fromARGB(0, 44, 86, 137), // Set to transparent
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          
+        ],
       ),
     );
   }
