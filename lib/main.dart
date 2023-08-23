@@ -71,7 +71,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
       MaterialPageRoute(builder: (context) => MathPage()), // Ganti dengan halaman yang sesuai
     );
   },
-  child: const Text('Math', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+  child: const Text('Math', style: TextStyle(color: Color.fromARGB(255, 45, 43, 43))),
 ),
 
               const SizedBox(height: 20),
