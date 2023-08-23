@@ -1,4 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'math_page.dart';
+import 'science_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -30,21 +35,14 @@ class ShoppingHomePage extends StatefulWidget {
 }
 
 class _ShoppingHomePageState extends State<ShoppingHomePage> {
-  int _itemsInCart = 0;
   int _currentIndex = 0; // Index for bottom navigation bar
-
-  void _addItemToCart() {
-    setState(() {
-      _itemsInCart++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Set to transparent
-        elevation: 0, // Remove elevation
+        backgroundColor: const Color.fromARGB(0, 255, 0, 0),
+        elevation: 0,
         title: Text(widget.title),
       ),
       body: Container(
@@ -66,15 +64,27 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
                 'Welcome to Ly Study :D',
               ),
               const SizedBox(height: 20),
-              Text(
-                'Items in Cart: $_itemsInCart',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white), // Set text color to white
-              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                     context,
+      MaterialPageRoute(builder: (context) => MathPage()), // Ganti dengan halaman yang sesuai
+    );
+  },
+  child: const Text('Math', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+),
+
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _addItemToCart,
-                child: const Text('Add Item to Cart'),
-              ),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SciencePage()), // Ganti dengan halaman yang sesuai
+    );
+  },
+  child: const Text('Science', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+),
+
             ],
           ),
         ),
@@ -86,7 +96,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
             builder: (context) {
               return AlertDialog(
                 title: const Text('Cart Summary'),
-                content: Text('You have $_itemsInCart items in your cart.'),
+                content: const Text('You have items in your cart.'),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -109,7 +119,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
             _currentIndex = index;
           });
         },
-        backgroundColor: const Color.fromARGB(0, 44, 86, 137), // Set to transparent
+        backgroundColor: const Color.fromARGB(0, 0, 115, 255),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -123,7 +133,6 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
-          
         ],
       ),
     );
